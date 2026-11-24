@@ -178,8 +178,37 @@ function tick() {
 
 // --- sealing -------------------------------------------------------------
 
+function setError(message) {
+  errorOutput.textContent = message;
+  errorOutput.hidden = false;
+}
+
+function clearError() {
+  errorOutput.hidden = true;
+  errorOutput.textContent = "";
+}
+
+function validateForm() {
+  const title = titleInput.value.trim();
+  const message = messageInput.value.trim();
+  const openDate = dateInput.value;
+
+  if (!title) return "Give your capsule a title.";
+  if (!message) return "Write a message before sealing.";
+  if (!openDate) return "Pick the date you want it to open.";
+  if (openDate <= todayString()) return "The opening date has to be in the future.";
+  return null;
+}
+
 function handleSubmit(event) {
   event.preventDefault();
+
+  const problem = validateForm();
+  if (problem) {
+    setError(problem);
+    return;
+  }
+  clearError();
 
   const capsule = {
     id: makeId(),
@@ -202,6 +231,9 @@ function handleSubmit(event) {
 function init() {
   dateInput.min = todayString();
   form.addEventListener("submit", handleSubmit);
+  [titleInput, messageInput, dateInput].forEach((input) =>
+    input.addEventListener("input", clearError)
+  );
   renderCapsules();
   tick();
   setInterval(tick, 1000);
