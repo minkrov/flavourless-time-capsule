@@ -144,7 +144,9 @@ function renderCapsules() {
     const view = renderCapsule(capsule);
     buildBody(view.body, capsule, reveal);
     list.append(view.node);
-    rendered.set(capsule.id, { capsule, ...view, revealed: reveal });
+    const full = { capsule, ...view, revealed: reveal };
+    rendered.set(capsule.id, full);
+    updateView(full, now);
   });
 
   countLabel.textContent = capsules.length ? ` (${capsules.length})` : "";
