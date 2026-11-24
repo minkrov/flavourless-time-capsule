@@ -92,7 +92,7 @@ function buildBody(container, capsule, reveal) {
 
   if (!reveal) {
     const notice = document.createElement("p");
-    notice.textContent = `🔒 Sealed. The message stays hidden until ${formatLongDate(capsule.openDate)}.`;
+    notice.textContent = `It's sealed!! The message will stay hidden until ${formatLongDate(capsule.openDate)}.`;
     container.append(notice);
     return;
   }
