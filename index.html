@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time Capsule</title>
+</head>
+<body>
+  <header>
+    <h1>Time Capsule</h1>
+    <p>Leave a note for your future self and seal it until the day you choose.</p>
+  </header>
+
+  <main>
+    <section id="compose">
+      <h2>Write a capsule</h2>
+      <form id="capsule-form" novalidate>
+        <div>
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" maxlength="80" placeholder="e.g. A note to next year's me" />
+        </div>
+        <div>
+          <label for="open-date">Open on</label>
+          <input id="open-date" name="openDate" type="date" />
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Dear future me, ..."></textarea>
+        </div>
+        <p id="form-error" role="alert" hidden></p>
+        <button type="submit">Seal time capsule</button>
+      </form>
+    </section>
+
+    <section id="archive">
+      <h2>Your capsules<span id="capsule-count"></span></h2>
+      <p id="empty-state" hidden>Nothing sealed yet — write your first capsule above.</p>
+      <ul id="capsule-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Capsules live in your browser's localStorage, so they stay sealed after you refresh.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
